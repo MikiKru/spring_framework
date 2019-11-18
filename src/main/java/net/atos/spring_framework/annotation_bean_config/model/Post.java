@@ -1,12 +1,17 @@
 package net.atos.spring_framework.annotation_bean_config.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import net.atos.spring_framework.annotation_bean_config.model.enums.Category;
+import org.springframework.context.annotation.Scope;
 
 import java.time.LocalDateTime;
 
-@ToString
-public class Post {
+@Data
+@NoArgsConstructor
+//@Scope(value = "prototype")
+public class Post extends SuperPost {
     private static int globalId;
     private int postId;
     private String title;
