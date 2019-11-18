@@ -20,6 +20,17 @@ public class Post extends SuperPost {
     private LocalDateTime dateAdded;
 
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "postId=" + postId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", category=" + category +
+                ", dateAdded=" + dateAdded +
+                "} " + super.toString();
+    }
+
     private void createBeanPost() {
         System.out.printf("Bean: %s is created: %s\n", getClass(), toString());
     }

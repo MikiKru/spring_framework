@@ -7,5 +7,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SuperPost {
     private int benchmark;
-    
+
 }

@@ -22,6 +22,13 @@ public class AnnotationStarter implements CommandLineRunner {
     @Qualifier("createSuperPost")
     private SuperPost superPost;
 
+    private static Boolean compareTwoPosts(SuperPost sp1, SuperPost sp2){
+        Boolean result = null;
+        if(sp1 != null && sp2 != null){
+            result = sp1.getBenchmark() > sp2.getBenchmark();
+        }
+        return result;
+    }
     @Override
     public void run(String... args) throws Exception {
         System.out.println("=====================================");
@@ -30,6 +37,11 @@ public class AnnotationStarter implements CommandLineRunner {
         System.out.println("WPIS: " + wpis);
         System.out.println("=====================================");
         System.out.println("SUPERPOST: " + superPost);
+        System.out.println("=====================================");
+        superPost.setBenchmark(-5);
+        System.out.println(superPost);
+        System.out.println(wpis);
+        System.out.println(compareTwoPosts(superPost, wpis));
         System.out.println("=====================================");
     }
 }
