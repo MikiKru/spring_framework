@@ -5,6 +5,7 @@ import net.atos.spring_framework.annotation_bean_config.model.SuperPost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -29,6 +30,10 @@ public class AnnotationStarter implements CommandLineRunner {
         }
         return result;
     }
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public void run(String... args) throws Exception {
         System.out.println("=====================================");
@@ -42,6 +47,11 @@ public class AnnotationStarter implements CommandLineRunner {
         System.out.println(superPost);
         System.out.println(wpis);
         System.out.println(compareTwoPosts(superPost, wpis));
+        System.out.println("====================CONTENT ENCODER=================");
+        post.setContent(passwordEncoder.encode(post.getContent()));
+        System.out.println(post);
         System.out.println("=====================================");
+
+
     }
 }

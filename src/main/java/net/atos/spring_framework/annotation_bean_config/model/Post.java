@@ -15,7 +15,7 @@ public class Post extends SuperPost {
     private static int globalId;
     private int postId;
     private String title;
-    private String content;
+    private String content = "";
     private Category category;
     private LocalDateTime dateAdded;
 
