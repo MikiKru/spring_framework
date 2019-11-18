@@ -7,6 +7,14 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
-    
+    <context:component-scan base-package="net.atos.spring_framework"/>
+    <bean
+            id="user"
+            class="net.atos.spring_framework.xml_bean_config.User"
+            init-method="createBeanUser"
+            destroy-method="destroyBeanUser"
+    >
+    </bean>
+
 
 </beans>

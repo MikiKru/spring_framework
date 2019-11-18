@@ -1,5 +1,8 @@
 package net.atos.spring_framework.xml_bean_config;
 
+import lombok.ToString;
+
+@ToString
 public class User {
     private static int globalId;
     private int userId;
@@ -14,5 +17,12 @@ public class User {
         this.password = password;
     }
 
+    public User() { }
 
+    private void createBeanUser() {
+        System.out.printf("Bean: %s is created: %s", getClass(), toString());
+    }
+    private void destroyBeanUser() {
+        System.out.printf("Bean: %s is destroyed: %s", getClass(), toString());
+    }
 }
