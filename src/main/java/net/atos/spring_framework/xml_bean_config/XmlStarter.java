@@ -1,4 +1,4 @@
-package net.atos.spring_framework;
+package net.atos.spring_framework.xml_bean_config;
 
 import net.atos.spring_framework.xml_bean_config.Task;
 import net.atos.spring_framework.xml_bean_config.User;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-@Component
-public class Starter implements CommandLineRunner {
+//@Component
+public class XmlStarter implements CommandLineRunner {
     @Autowired
     @Qualifier("user")
     private User user;
