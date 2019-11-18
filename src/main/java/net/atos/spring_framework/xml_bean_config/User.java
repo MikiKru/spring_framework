@@ -9,6 +9,7 @@ public class User {
     private String login;
     private String password;
     private boolean status;
+    private Role role;
 
     public User(String login, String password) {
         globalId++;
@@ -20,9 +21,16 @@ public class User {
     public User() { }
 
     private void createBeanUser() {
-        System.out.printf("Bean: %s is created: %s", getClass(), toString());
+        System.out.printf("Bean: %s is created: %s\n", getClass(), toString());
     }
     private void destroyBeanUser() {
-        System.out.printf("Bean: %s is destroyed: %s", getClass(), toString());
+        System.out.printf("Bean: %s is destroyed: %s\n", getClass(), toString());
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

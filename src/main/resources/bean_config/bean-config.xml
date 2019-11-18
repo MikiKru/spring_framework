@@ -7,13 +7,28 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--lokalizacja beanów-->
     <context:component-scan base-package="net.atos.spring_framework"/>
+    <!--lokalizacja właściwości-->
+    <context:property-placeholder location="classpath:bean_properties/user.properties"/>
+    <!--konfiguracja beana-->
     <bean
-            id="user"
+            id="defaultUser"
             class="net.atos.spring_framework.xml_bean_config.User"
             init-method="createBeanUser"
-            destroy-method="destroyBeanUser"
+            destroy-method="destroyBeanUser">
+    </bean>
+    <bean
+        id="user"
+        class="net.atos.spring_framework.xml_bean_config.User"
+        init-method="createBeanUser"
+        destroy-method="destroyBeanUser"
     >
+        <constructor-arg index="0" value="test@test.pl"/>
+        <constructor-arg index="1" value="test"/>
+        <property name="role" value="${user.default.role}"/>
+        <property name="status" value="${user.default.status}"/>
+
     </bean>
 
 
