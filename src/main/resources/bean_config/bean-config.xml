@@ -26,7 +26,7 @@
     >
         <constructor-arg index="0" value="test@test.pl"/>
         <constructor-arg index="1" value="test"/>
-        <constructor-arg index="2" ref="task"/>
+        <!--<constructor-arg index="2" ref="task"/>-->
 
         <property name="role" value="${user.default.role}"/>
         <property name="status" value="${user.default.status}"/>
@@ -35,6 +35,11 @@
                 <value>PC</value>
                 <value>card</value>
             </list>
+        </property>
+        <property name="tasks">
+            <set>
+                <ref bean="task"></ref>
+            </set>
         </property>
     </bean>
     <bean

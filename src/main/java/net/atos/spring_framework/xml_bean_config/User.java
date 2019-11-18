@@ -15,12 +15,11 @@ public class User {
     private List<Item> items;
     private Set<Task> tasks;
 
-    public User(String login, String password, Set<Task> tasks) {
+    public User(String login, String password) {
         globalId++;
         this.userId = globalId;
         this.login = login;
         this.password = password;
-        this.tasks = tasks;
     }
 
     public User() { }
@@ -41,5 +40,9 @@ public class User {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 }
