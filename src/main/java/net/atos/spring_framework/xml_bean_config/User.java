@@ -1,8 +1,11 @@
 package net.atos.spring_framework.xml_bean_config;
 
 import lombok.ToString;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @ToString
 public class User {
@@ -15,6 +18,7 @@ public class User {
     private List<Item> items;
     private Set<Task> tasks;
 
+
     public User(String login, String password) {
         globalId++;
         this.userId = globalId;
@@ -23,6 +27,24 @@ public class User {
     }
 
     public User() { }
+
+    public Set<Task> getTasksByDeadline(LocalDate taskDeadline){
+        Set<Task> foundTasks = null;
+        foundTasks = tasks;
+        if(!tasks.isEmpty()) {
+            foundTasks = tasks
+                    .stream()
+                    .map(task -> {
+                        if (task.getTaskDeadline() == null) {
+                            task.setTaskDeadline(LocalDate.now());
+                        }
+                        return task;
+                    })
+                    .filter(task -> task.getTaskDeadline().isEqual(taskDeadline))
+                    .collect(Collectors.toSet());
+        }
+        return foundTasks;
+    }
 
     private void createBeanUser() {
         System.out.printf("Bean: %s is created: %s\n", getClass(), toString());
@@ -45,4 +67,11 @@ public class User {
     public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
     }
+    public void addTask(Task task){
+        if(tasks != null) {
+            System.out.println("DODANO NOWEGO TASKA");
+            this.tasks.add(task);
+        }
+    }
+
 }
