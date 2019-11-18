@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import net.atos.spring_framework.annotation_bean_config.model.enums.Category;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 
 import java.time.LocalDateTime;
@@ -11,14 +13,15 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 //@Scope(value = "prototype")
+@PropertySource("classpath:bean_properties/post.properties")
 public class Post extends SuperPost {
     private static int globalId;
     private int postId;
     private String title;
-    private String content = "";
+    @Value("${post.default.content:example text}")
+    private String content;
     private Category category;
     private LocalDateTime dateAdded;
-
 
     @Override
     public String toString() {
