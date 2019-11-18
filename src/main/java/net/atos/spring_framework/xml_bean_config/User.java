@@ -1,6 +1,8 @@
 package net.atos.spring_framework.xml_bean_config;
 
 import lombok.ToString;
+import java.util.List;
+import java.util.Set;
 
 @ToString
 public class User {
@@ -10,12 +12,15 @@ public class User {
     private String password;
     private boolean status;
     private Role role;
+    private List<Item> items;
+    private Set<Task> tasks;
 
-    public User(String login, String password) {
+    public User(String login, String password, Set<Task> tasks) {
         globalId++;
         this.userId = globalId;
         this.login = login;
         this.password = password;
+        this.tasks = tasks;
     }
 
     public User() { }
@@ -32,5 +37,9 @@ public class User {
     }
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }
