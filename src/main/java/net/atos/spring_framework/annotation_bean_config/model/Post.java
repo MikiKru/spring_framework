@@ -2,26 +2,28 @@ package net.atos.spring_framework.annotation_bean_config.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import net.atos.spring_framework.annotation_bean_config.model.enums.Category;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.Scope;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 //@Scope(value = "prototype")
-@PropertySource("classpath:bean_properties/post.properties")
+@PropertySource("classpath:bean_properties/mypost.properties")
 public class Post extends SuperPost {
     private static int globalId;
     private int postId;
     private String title;
-    @Value("${post.default.content:example text}")
+    @Value("${mypost.default.content:xxx}")
     private String content;
     private Category category;
     private LocalDateTime dateAdded;
+    // new ArrayList<>(Arrays.asList("A","B","C"))
+    @Value("#{T(java.util.Arrays).asList('${mypost.comments:a,b,c}')}")
+    private List<String> comments;
 
     @Override
     public String toString() {
@@ -31,6 +33,7 @@ public class Post extends SuperPost {
                 ", content='" + content + '\'' +
                 ", category=" + category +
                 ", dateAdded=" + dateAdded +
+                ", comments=" + comments +
                 "} " + super.toString();
     }
 

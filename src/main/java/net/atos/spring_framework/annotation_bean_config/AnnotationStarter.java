@@ -1,7 +1,9 @@
 package net.atos.spring_framework.annotation_bean_config;
 
+import net.atos.spring_framework.annotation_bean_config.controller.PostController;
 import net.atos.spring_framework.annotation_bean_config.model.Post;
 import net.atos.spring_framework.annotation_bean_config.model.SuperPost;
+import net.atos.spring_framework.xml_bean_config.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -34,6 +36,9 @@ public class AnnotationStarter implements CommandLineRunner {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private PostController postController;
+
     @Override
     public void run(String... args) throws Exception {
         System.out.println("=====================================");
@@ -50,7 +55,10 @@ public class AnnotationStarter implements CommandLineRunner {
         System.out.println("====================CONTENT ENCODER=================");
         post.setContent(passwordEncoder.encode(post.getContent()));
         System.out.println(post);
-        System.out.println("=====================================");
+        System.out.println("================DI=====================");
+        System.out.println(postController);
+        postController.setUser(new User("X","X"));
+        System.out.println(postController);
 
 
     }
