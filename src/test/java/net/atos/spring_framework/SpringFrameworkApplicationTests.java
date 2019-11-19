@@ -8,8 +8,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.security.crypto.codec.Hex;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,6 +50,25 @@ class SpringFrameworkApplicationTests {
     void checkDefaultUserPassword(){
         // sprawdzamy czy domyślne hasło w obiekcie user jest null
         assertNull(defaultUser.getPassword());
+    }
+
+    @Autowired
+    @Qualifier("user")
+    private User user;
+    private String getPasswordEncodedByMd5(String password) throws NoSuchAlgorithmException {
+        MessageDigest md5Encoder = MessageDigest.getInstance("MD5");
+        md5Encoder.update(password.getBytes(Charset.forName("UTF8")));
+        final byte[] resultByte = md5Encoder.digest();
+        final String result = new String(Hex.encode(resultByte));
+        System.out.println(result);
+        return result;
+    }
+    @Test
+    void checkUserPasswordEncodeByMd5() throws NoSuchAlgorithmException {
+        assertEquals(
+                getPasswordEncodedByMd5("test"),
+                getPasswordEncodedByMd5(user.getPassword())
+        );
     }
 
 }
