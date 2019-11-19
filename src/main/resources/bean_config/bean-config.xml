@@ -10,6 +10,7 @@
     <!--lokalizacja beanów-->
     <context:component-scan base-package="net.atos.spring_framework"/>
     <!--lokalizacja właściwości-->
+    <!--<context:property-placeholder location="classpath:bean_properties/user.properties"/>-->
     <context:property-placeholder location="classpath:bean_properties/user.properties"/>
     <!--konfiguracja beana-->
     <bean

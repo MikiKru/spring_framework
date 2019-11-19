@@ -4,10 +4,12 @@ import net.atos.spring_framework.annotation_bean_config.model.Post;
 import net.atos.spring_framework.annotation_bean_config.model.SuperPost;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+@PropertySource("classpath:bean_properties/post.properties")
 public class BeansConfiguration {
 
     @Bean

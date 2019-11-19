@@ -12,17 +12,16 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 //@Scope(value = "prototype")
-@PropertySource("classpath:bean_properties/mypost.properties")
 public class Post extends SuperPost {
     private static int globalId;
     private int postId;
     private String title;
-    @Value("${mypost.default.content:xxx}")
+    @Value("${post.default.content:???}")
     private String content;
     private Category category;
     private LocalDateTime dateAdded;
     // new ArrayList<>(Arrays.asList("A","B","C"))
-    @Value("#{T(java.util.Arrays).asList('${mypost.comments:a,b,c}')}")
+    @Value("#{T(java.util.Arrays).asList('${post.comments:?,?,?}')}")
     private List<String> comments;
 
     @Override
