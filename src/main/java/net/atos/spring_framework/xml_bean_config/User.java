@@ -28,6 +28,10 @@ public class User {
 
     public User() { }
 
+    public String getPassword() {
+        return password;
+    }
+
     public Set<Task> getTasksByDeadline(LocalDate taskDeadline){
         Set<Task> foundTasks = null;
         foundTasks = tasks;
